@@ -34,6 +34,24 @@ export default class FXMoney {
     }
   }
 
+  private formatConversion(amount: number, to: string, from: string): FXMoneyConversion {
+    return {
+      from: from,
+      to: to,
+      amount: ((amount*100)/100).toFixed(2),
+      intAmount: Math.trunc(amount*100),
+      rawAmount: amount
+    }
+  }
+
+  convert(amount: number, from: string = this.settings.from, to: string = this.settings.to, customRates?: FXMoneyRates): FXMoneyConversion {
+    let rates = customRates || this.rates;
+
+    // Multiply the amount by the exchange rate.
+    let finalAmount = amount * this.getRate(from, to, rates);
+    return this.formatConversion(finalAmount, to, from);
+  }
+
   getRate(from: string, to: string, customRates?: FXMoneyRates): number {
     const rates = customRates || this.rates;
     // Check if the from currency is valid and exists in the rates.

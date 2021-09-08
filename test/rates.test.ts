@@ -35,14 +35,14 @@ describe('check to see correct rates are returned', () => {
     expect(fxmoney.getRate('GBP', 'GBP')).toBe(1);
   });
 
-  it('throw an error for a non existant "from" currency', () => {
+  it('throws an error for a non existant "from" currency', () => {
     let fxmoney = new FXMoney('GBP', {
       'GBP': 1.9
     });
     expect(()=>fxmoney.getRate('EUR', 'GBP')).toThrow('Cannot get rate for non existant currency EUR (from)');
   });
 
-  it('throw an error for a non existant "to" currency', () => {
+  it('throws an error for a non existant "to" currency', () => {
     let fxmoney = new FXMoney('GBP', {
       'GBP': 1.9
     });

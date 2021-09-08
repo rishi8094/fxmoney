@@ -35,7 +35,7 @@ export default class FXMoney {
   }
 
   getRate(from: string, to: string, customRates?: FXMoneyRates): number {
-    let rates = customRates || this.rates;
+    const rates = customRates || this.rates;
     // Check if the from currency is valid and exists in the rates.
     if (!rates[from]) {
       throw new Error(`Cannot get rate for non existant currency ${from} (from)`);

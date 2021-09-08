@@ -21,7 +21,7 @@ export default class FXMoney {
   settings: FXMoneySettings;
 
   constructor(base: string, rates: FXMoneyRates, settings?: FXMoneySettings) {
-    this.base = base.toUpperCase();
+    this.base = base;
     this.rates = rates;
     this.settings = {
       from: settings ? settings.from : this.base,
@@ -45,16 +45,21 @@ export default class FXMoney {
     }
   }
 
-  convert(amount: number, from: string = this.settings.from, to: string = this.settings.to, customRates?: FXMoneyRates): FXMoneyConversion {
-    let rates = customRates || this.rates;
+  convert(amount: number, args: { from?: string; to?: string; customRates?: FXMoneyRates}): FXMoneyConversion {
+    const rates = args.customRates || this.rates;
+    const from = args.from || this.settings.from;
+    const to = args.to || this.settings.to;
 
     // Multiply the amount by the exchange rate.
-    let finalAmount = amount * this.getRate(from, to, rates);
+    const finalAmount = amount * this.getRate({from: from, to: to, customRates: rates});
     return this.formatConversion(finalAmount, to, from);
   }
 
-  getRate(from: string, to: string, customRates?: FXMoneyRates): number {
-    const rates = customRates || this.rates;
+  getRate(args: {from: string; to: string; customRates?: FXMoneyRates}): number {
+    const rates = args.customRates || this.rates;
+    const from = args.from;
+    const to = args.to;
+    
     // Check if the from currency is valid and exists in the rates.
     if (!rates[from]) {
       throw new Error(`Cannot get rate for non existant currency ${from} (from)`);

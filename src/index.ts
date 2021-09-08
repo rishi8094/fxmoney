@@ -35,10 +35,11 @@ export default class FXMoney {
   }
 
   private formatConversion(amount: number, to: string, from: string): FXMoneyConversion {
+    // Truncating the number to the nearest hundredth helps preserve the currency formatting, e.g 1.23456789 -> 1.23.
     return {
       from: from,
       to: to,
-      amount: ((amount*100)/100).toFixed(2),
+      amount: (Math.trunc(amount*100)/100).toFixed(2),
       intAmount: Math.trunc(amount*100),
       rawAmount: amount
     }

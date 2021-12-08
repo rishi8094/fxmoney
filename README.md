@@ -1,12 +1,12 @@
 # FXMoney
-Based on the depreciated [money.js](http://openexchangerates.github.io/money.js/), this libarary aims to bring both node & TS suppoort and additional functionality.
+Based on the deprecated [money.js](http://openexchangerates.github.io/money.js/), this library aims to bring both node & TS support including additional functionalities.
 
-FXMoney is a simple JS/TS library to for dealing with money conversions.
+FXMoney is a simple JS/TS library to deal with money conversions.
 
-## Installing
+## Installation
 
 ```
-$ npm install fxmoney // or yarn install fxmoney
+$ npm install fxmoney # or yarn install fxmoney
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ const fx = new FXMoney('GBP', {
   'GBP': 1,
   'USD': 1.38,
   'EUR': 1.16
-});
+})
 ```
 
 ### Conversions

@@ -6,7 +6,7 @@ FXMoney is a simple JS/TS library to deal with money conversions.
 ## Installation
 
 ```
-$ npm install fxmoney # or yarn install fxmoney
+$ npm install fxmoney # or yarn add fxmoney
 ```
 
 ## Usage
